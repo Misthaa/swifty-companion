@@ -30,7 +30,7 @@ Swifty Companion est une application mobile Flutter développée dans le cadre d
    
 3. **Mettre le .env :**
 
-   Mettre le .env à la rascine du projet.
+   Mettre le .env à la racine du projet.
   
    ```.env
    UID_42="(UID que tu as genéré sur l'intra)"
