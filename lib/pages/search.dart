@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../services/api_fetch.dart';
@@ -38,17 +39,19 @@ class SearchPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
+                TextField(
                 controller: searchController,
+                maxLength: 20,
                 style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: 'Rechercher...',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(22.0),
+                  borderSide: BorderSide(color: Colors.grey),
                   ),
                   filled: true,
                   fillColor: Colors.white,
+                  counterText: '',
                 ),
               ),
               SizedBox(height: 16),
@@ -66,7 +69,28 @@ class SearchPage extends StatelessWidget {
 
                   final clientId = dotenv.env['UID_42'];
                   final clientSecret = dotenv.env['SECRET_42'];
-                  final token = await fetchAccessToken(clientId!, clientSecret!);
+                  final prefs = await SharedPreferences.getInstance();
+                  String? token = prefs.getString('access_token');
+                  bool tokenValid = true;
+                  if (token != null) {
+                    final userDataTest = await fetchUserData(token, searchController.text);
+                    if (userDataTest == null) {
+                      tokenValid = false;
+                    }
+                  } 
+                  else {
+                    tokenValid = false;
+                  }
+
+                  if (!tokenValid) {
+                    token = await fetchAccessToken(clientId!, clientSecret!);
+                    await prefs.setString('access_token', token ?? '');
+                  }
+                  if (token == null) {
+                    token = await fetchAccessToken(clientId!, clientSecret!);
+                    await prefs.setString('access_token', token ?? '');
+                  }
+
 
                   await Future.delayed(Duration(seconds: 2));
                   Navigator.of(context).pop();

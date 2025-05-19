@@ -11,8 +11,10 @@ Future<String?> fetchAccessToken(String clientId, String clientSecret) async {
     },
   );
 
+
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
+    print('Access Token: ${data['access_token']}');
     return data['access_token'];
   } else {
     print('Erreur : ${response.statusCode}');
