@@ -24,7 +24,7 @@ Swifty Companion est une application mobile Flutter développée dans le cadre d
 1. **Cloner le dépôt :**
 
    ```bash
-   git clone https://github.com/ton-github/swifty-companion.git
+   git clone git@github.com:Misthaa/swifty-companion.git
    cd swifty-companion
    ```
    
