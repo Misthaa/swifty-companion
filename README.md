@@ -30,20 +30,20 @@ Swifty Companion est une application mobile Flutter développée dans le cadre d
    
 3. **Mettre le .env :**
 
-  Mettre le .env à la rascine du projet.
-
-  ```.env
-  UID_42="(UID que tu as genéré sur l'intra)"
-  SECRET_42="(SECRET KEY que tu as genéré sur l'intra)"
-  ```
+   Mettre le .env à la rascine du projet.
+  
+   ```.env
+   UID_42="(UID que tu as genéré sur l'intra)"
+   SECRET_42="(SECRET KEY que tu as genéré sur l'intra)"
+   ```
 
 4. **Lancer l'application**
 
-  Installer les dépendances et lancer le projet.
-
-  ```bash
-  flutter run
-  ```
+   Installer les dépendances et lancer le projet.
+  
+   ```bash
+   flutter run
+   ```
 
 ## 📸 Aperçu
 
